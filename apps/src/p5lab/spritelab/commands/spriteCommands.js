@@ -48,6 +48,12 @@ export const commands = {
     }
   },
 
+  clickedSpritePointer(which, extraArgs) {
+    if (extraArgs) {
+      return extraArgs.sprite;
+    }
+  },
+
   makeSprite(animation, location) {
     if (!location) {
       location = {x: 200, y: 200};

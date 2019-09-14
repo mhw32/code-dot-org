@@ -3,6 +3,9 @@
   "config": {
     "func": "clickedSpritePointer",
     "blockText": "clicked {SPRITE}",
+    "extraArgs": [
+      "extraArgs"
+    ],
     "args": [
       {
         "name": "SPRITE",

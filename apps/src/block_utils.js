@@ -1,3 +1,4 @@
+/* global Blockly */
 import _ from 'lodash';
 import xml from './xml';
 
@@ -990,9 +991,32 @@ exports.createJsWrapperBlockCreator = function(
           this.setPreviousStatement(true);
         }
 
+        if (blockText === '{CONDITION} {SPRITE} clicked') {
+          // console.log('calling initMiniFlyout in init')
+          // //this.miniFlyout = true;
+          // var toggle = new Blockly.FieldIcon('＋');
+          // this.tray = false;
+          // Blockly.bindEvent_(toggle.fieldGroup_, 'mousedown', this, () => {
+          //   if (this.tray) {
+          //     toggle.setText('＋');
+          //   } else {
+          //     toggle.setText('－');
+          //   }
+          //   this.tray = !this.tray;
+          //   this.render();
+          // });
+          // this.initMiniFlyout(`
+          //   <xml>
+          //     <block type="gamelab_clickedSpritePointer"></block>
+          //   </xml>
+          // `);
+          // this.appendStatementInput().appendTitle(toggle);
+        }
+
         // For mini-toolbox, indicate which blocks should receive the duplicate on drag
         // behavior and indicates the sibling block to shadow the value from
         if (blockText === 'clicked {SPRITE}') {
+          console.log('clicked {SPRITE}');
           this.setParentForCopyOnDrag('gamelab_spriteClickedSet');
           this.setBlockToShadow('gamelab_allSpritesWithAnimation');
         }

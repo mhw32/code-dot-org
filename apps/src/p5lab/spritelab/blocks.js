@@ -1,4 +1,4 @@
-/* global dashboard */
+/* global dashboard, Blockly */
 
 import {SVG_NS} from '@cdo/apps/constants';
 import {getStore} from '@cdo/apps/redux';
@@ -250,6 +250,31 @@ const customInputTypes = {
     },
     generateCode(block, arg) {
       return Blockly.JavaScript.translateVarName(block.getTitleValue(arg.name));
+    }
+  },
+  miniToolbox: {
+    addInput(blockly, block, inputConfig, currentInputRow) {
+      // debugger;
+      var toggle = new Blockly.FieldIcon('＋');
+      block.tray = false;
+      Blockly.bindEvent_(toggle.fieldGroup_, 'mousedown', block, () => {
+        if (block.tray) {
+          toggle.setText('＋');
+        } else {
+          toggle.setText('－');
+        }
+        block.tray = !block.tray;
+        block.render();
+      });
+      currentInputRow.appendTitle(toggle);
+      block.initMiniFlyout(`
+        <xml>
+          <block type="gamelab_clickedSpritePointer"></block>
+        </xml>
+      `);
+    },
+    generateCode(block, arg) {
+      return block.getTitleValue(arg.name);
     }
   },
   limitedColourPicker: {
