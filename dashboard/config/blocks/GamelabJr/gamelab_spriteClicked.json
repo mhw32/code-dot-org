@@ -7,7 +7,7 @@
       0.74
     ],
     "func": "spriteClicked",
-    "blockText": "{CONDITION} {SPRITE} clicked {TOOLBOX}",
+    "blockText": "{CONDITION} {SPRITE} clicked",
     "callbackParams": [
       "extraArgs"
     ],
@@ -28,10 +28,6 @@
       {
         "name": "SPRITE",
         "type": "Sprite"
-      },
-      {
-        "name": "TOOLBOX",
-        "customInput": "miniToolbox"
       }
     ],
     "eventBlock": true

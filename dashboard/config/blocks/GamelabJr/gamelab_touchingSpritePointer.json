@@ -1,0 +1,17 @@
+{
+  "category": "",
+  "config": {
+    "func": "touchingSpritePointer",
+    "blockText": "subject {SPRITE}",
+    "extraArgs": [
+      "extraArgs"
+    ],
+    "args": [
+      {
+        "name": "SPRITE",
+        "customInput": "spritePointer"
+      }
+    ],
+    "returnType": "Sprite"
+  }
+}

@@ -992,38 +992,71 @@ exports.createJsWrapperBlockCreator = function(
         }
 
         if (blockText === '{CONDITION} {SPRITE} clicked') {
-          // console.log('calling initMiniFlyout in init')
-          // //this.miniFlyout = true;
-          // var toggle = new Blockly.FieldIcon('＋');
-          // this.tray = false;
-          // Blockly.bindEvent_(toggle.fieldGroup_, 'mousedown', this, () => {
-          //   if (this.tray) {
-          //     toggle.setText('＋');
-          //   } else {
-          //     toggle.setText('－');
-          //   }
-          //   this.tray = !this.tray;
-          //   this.render();
-          // });
-          // this.initMiniFlyout(`
-          //   <xml>
-          //     <block type="gamelab_clickedSpritePointer"></block>
-          //   </xml>
-          // `);
-          // this.appendStatementInput().appendTitle(toggle);
+          console.log('calling initMiniFlyout in init');
+          //this.miniFlyout = true;
+          let toggle = new Blockly.FieldIcon('＋');
+          this.tray = false;
+          Blockly.bindEvent_(toggle.fieldGroup_, 'mousedown', this, () => {
+            if (this.tray) {
+              toggle.setText('＋');
+            } else {
+              toggle.setText('－');
+            }
+            this.tray = !this.tray;
+            this.render();
+          });
+          this.referenceBlockConfig = {
+            gamelab_clickedSpritePointer: 'SPRITE'
+          };
+          this.initMiniFlyout(`
+            <xml>
+              <block type="gamelab_clickedSpritePointer"></block>
+            </xml>
+          `);
+          this.appendStatementInput().appendTitle(toggle);
+        }
+
+        if (blockText === '{CONDITION} {SPRITE1} touches {SPRITE2}') {
+          console.log('calling initMiniFlyout in init');
+          //this.miniFlyout = true;
+          let toggle = new Blockly.FieldIcon('＋');
+          this.tray = false;
+          Blockly.bindEvent_(toggle.fieldGroup_, 'mousedown', this, () => {
+            if (this.tray) {
+              toggle.setText('＋');
+            } else {
+              toggle.setText('－');
+            }
+            this.tray = !this.tray;
+            this.render();
+          });
+          this.referenceBlockConfig = {
+            gamelab_touchingSpritePointer: 'SPRITE1',
+            gamelab_touchedSpritePointer: 'SPRITE2'
+          };
+          this.initMiniFlyout(`
+            <xml>
+              <block type="gamelab_touchingSpritePointer"></block>
+              <block type="gamelab_touchedSpritePointer"></block>
+            </xml>
+          `);
+          this.appendStatementInput().appendTitle(toggle);
         }
 
         // For mini-toolbox, indicate which blocks should receive the duplicate on drag
         // behavior and indicates the sibling block to shadow the value from
         if (blockText === 'clicked {SPRITE}') {
+          this.isReferenceBlock = true;
           console.log('clicked {SPRITE}');
           this.setParentForCopyOnDrag('gamelab_spriteClickedSet');
           this.setBlockToShadow('gamelab_allSpritesWithAnimation');
         }
-        if (blockText === 'subject sprite') {
+        if (blockText === 'subject {SPRITE}') {
+          this.isReferenceBlock = true;
           this.setParentForCopyOnDrag('gamelab_whenTouchingSet');
         }
-        if (blockText === 'object sprite') {
+        if (blockText === 'object {SPRITE}') {
+          this.isReferenceBlock = true;
           this.setParentForCopyOnDrag('gamelab_whenTouchingSet');
         }
 
