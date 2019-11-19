@@ -3,8 +3,14 @@
 / Note that content_class, source_level, hide_header, and postcontent are optional.
 - app, data, content_class, source_level, hide_header, postcontent = %i(app data content_class source_level hide_header postcontent).map{ |x| local_assigns[x] }
 - level = source_level || @level
-
 - content_for(:head) do
+  - options = {readonly:true, embedded: true, locale: js_locale, baseUrl: Blockly.base_url, blocks: '<xml></xml>', dialog: {},}
+  =content_tag(:script, '', src: webpack_asset_path('js/blockly.js'))
+  =content_tag(:script, '', src: webpack_asset_path("js/#{js_locale}/blockly_locale.js"))
+  =content_tag(:script, '', src: webpack_asset_path('js/common.js'))
+  =content_tag(:script, '', src: webpack_asset_path("js/#{js_locale}/#{app}_locale.js"))
+  =content_tag(:script, '', src: webpack_asset_path("js/#{app}.js"), 'data-appoptions': options.to_json)
+  =content_tag(:script, '', src: webpack_asset_path('js/embedBlocks.js'))
   %script{src: webpack_asset_path('js/levels/_content.js')}
 
 - unless data['title'].blank? || hide_header

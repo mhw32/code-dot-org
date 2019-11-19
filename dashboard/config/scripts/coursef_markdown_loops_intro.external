@@ -15,4 +15,13 @@ markdown <<MARKDOWN
 ## Blocks to Know
 
 ![](https://images.code.org/2d949be303e653f4ea203cc00f0b06c3-image-1524697677509.png)
+
+---
+DAYNE Begin
+
+<xml><block type="controls_repeat"><title name="TIMES">5</title><statement name="DO"></statement></block></xml>
+
+DAYNE End
+
+---
 MARKDOWN

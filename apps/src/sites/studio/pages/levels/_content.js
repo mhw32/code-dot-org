@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import React from 'react';
 import ReactDom from 'react-dom';
-
 import SafeMarkdown from '@cdo/apps/templates/SafeMarkdown';
+import {convertXmlToBlockly} from '@cdo/apps/templates/instructions/utils';
 
 $(document).ready(() => {
   // Render Markdown
@@ -11,9 +11,13 @@ $(document).ready(() => {
       return;
     }
 
+    var container = this;
     ReactDom.render(
       React.createElement(SafeMarkdown, this.dataset, null),
-      this
+      this,
+      function() {
+        convertXmlToBlockly(container);
+      }
     );
   });
 });
