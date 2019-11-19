@@ -451,7 +451,7 @@ export class Workshop extends React.Component {
       </div>
     );
 
-    return this.renderPanel(header, content);
+    return <WorkshopPanel header={header}>{content}</WorkshopPanel>;
   }
 
   renderIntroPanel() {
@@ -566,7 +566,7 @@ export class Workshop extends React.Component {
         );
     }
 
-    return this.renderPanel(header, contents);
+    return <WorkshopPanel header={header}>{contents}</WorkshopPanel>;
   }
 
   renderAdminActionButton() {
@@ -622,7 +622,7 @@ export class Workshop extends React.Component {
     const header = <div>Take Attendance:</div>;
 
     const contents = this.renderAttendancePanelContents();
-    return this.renderPanel(header, contents);
+    return <WorkshopPanel header={header}>{contents}</WorkshopPanel>;
   }
 
   renderAttendancePanelContents() {
@@ -717,7 +717,7 @@ export class Workshop extends React.Component {
       </div>
     );
 
-    return this.renderPanel(header, contents);
+    return <WorkshopPanel header={header}>{contents}</WorkshopPanel>;
   }
 
   renderDetailsPanelHeader() {
@@ -798,9 +798,10 @@ export class Workshop extends React.Component {
   }
 
   renderDetailsPanel() {
-    return this.renderPanel(
-      this.renderDetailsPanelHeader(),
-      this.renderDetailsPanelContent()
+    return (
+      <WorkshopPanel header={this.renderDetailsPanelHeader()}>
+        {this.renderDetailsPanelContent()}
+      </WorkshopPanel>
     );
   }
 
@@ -870,22 +871,7 @@ export class Workshop extends React.Component {
       );
     }
 
-    return this.renderPanel(header, contents);
-  }
-
-  renderPanel(header, content) {
-    return (
-      <Row>
-        <Col sm={12}>
-          <Panel>
-            <Panel.Heading>
-              <Panel.Title>{header}</Panel.Title>
-            </Panel.Heading>
-            <Panel.Body>{content}</Panel.Body>
-          </Panel>
-        </Col>
-      </Row>
-    );
+    return <WorkshopPanel header={header}>{contents}</WorkshopPanel>;
   }
 
   render() {
@@ -911,3 +897,20 @@ export class Workshop extends React.Component {
 export default connect(state => ({
   permission: state.workshopDashboard.permission
 }))(Workshop);
+
+const WorkshopPanel = ({header, children}) => (
+  <Row>
+    <Col sm={12}>
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title>{header}</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>{children}</Panel.Body>
+      </Panel>
+    </Col>
+  </Row>
+);
+WorkshopPanel.propTypes = {
+  header: PropTypes.node,
+  children: PropTypes.node
+};
