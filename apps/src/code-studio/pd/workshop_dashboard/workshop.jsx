@@ -298,16 +298,6 @@ export class Workshop extends React.Component {
       });
   };
 
-  getAttendanceUrl(sessionId) {
-    return `/workshops/${this.props.params.workshopId}/attendance/${sessionId}`;
-  }
-
-  handleTakeAttendanceClick = event => {
-    event.preventDefault();
-    const sessionId = event.currentTarget.dataset.session_id;
-    this.context.router.push(this.getAttendanceUrl(sessionId));
-  };
-
   handleEditClick = () => {
     this.context.router.push(`/workshops/${this.props.params.workshopId}/edit`);
   };
@@ -340,90 +330,6 @@ export class Workshop extends React.Component {
   handleEnrollmentActiveTabSelect = enrollmentActiveTab => {
     this.setState({enrollmentActiveTab});
   };
-
-  getSessionAttendanceLink(session) {
-    const url = this.getSessionAttendanceUrl(session);
-    return (
-      <a href={url} target="_blank">
-        {url}
-      </a>
-    );
-  }
-
-  getSessionAttendanceUrl(session) {
-    if (!session.code) {
-      console.warn(`No attendance code found for session ${session.id}`);
-      return null;
-    }
-
-    return `${window.location.protocol}${window.dashboard.CODE_ORG_URL}/pd/${
-      session.code
-    }`;
-  }
-
-  renderAttendancePanel() {
-    if (this.state.workshop.state === 'Not Started') {
-      return null;
-    }
-
-    const header = <div>Take Attendance:</div>;
-
-    const contents = this.renderAttendancePanelContents();
-    return <WorkshopPanel header={header}>{contents}</WorkshopPanel>;
-  }
-
-  renderAttendancePanelContents() {
-    return (
-      <div>
-        <p>
-          There is a unique attendance URL for each day of your workshop. On
-          each day of your workshop, your participants must visit that day's
-          attendance URL to receive professional development credit. The
-          attendance URL(s) will be shown below, 2 days in advance, for your
-          convenience.
-        </p>
-        <Row>
-          <Col md={2}>Date</Col>
-          <Col md={4}>Attendance URL</Col>
-          <Col md={4}>View Daily Roster</Col>
-        </Row>
-        {this.state.workshop.sessions.map(session => {
-          const date = moment.utc(session.start).format(DATE_FORMAT);
-          return (
-            <Row key={session.id} style={styles.attendanceRow}>
-              <Col md={2}>
-                <div style={styles.attendanceRowText}>{date}</div>
-              </Col>
-              <Col md={4}>
-                {session['show_link?'] && (
-                  <div style={styles.attendanceRowText}>
-                    {this.getSessionAttendanceLink(session)}
-                  </div>
-                )}
-              </Col>
-              <Col md={4}>
-                <Button
-                  className={
-                    session['show_link?'] && session.attendance_count === 0
-                      ? 'btn-orange'
-                      : null
-                  }
-                  data-session_id={session.id}
-                  href={this.context.router.createHref(
-                    this.getAttendanceUrl(session.id)
-                  )}
-                  onClick={this.handleTakeAttendanceClick}
-                >
-                  Attendance for&nbsp;
-                  {date}
-                </Button>
-              </Col>
-            </Row>
-          );
-        })}
-      </div>
-    );
-  }
 
   renderEndWorkshopPanel() {
     if (this.state.workshop.state !== 'In Progress') {
@@ -643,7 +549,12 @@ export class Workshop extends React.Component {
           isWorkshopAdmin={this.props.permission.has(WorkshopAdmin)}
           loadWorkshop={this.loadWorkshop.bind(this)}
         />
-        {this.renderAttendancePanel()}
+        {this.state.workshop.state !== 'Not Started' && (
+          <AttendancePanel
+            workshopId={this.props.params.workshopId}
+            sessions={this.state.workshop.sessions}
+          />
+        )}
         {this.renderEndWorkshopPanel()}
         {this.renderEnrollmentsPanel()}
         {this.renderDetailsPanel()}
@@ -655,3 +566,100 @@ export class Workshop extends React.Component {
 export default connect(state => ({
   permission: state.workshopDashboard.permission
 }))(Workshop);
+
+class AttendancePanel extends React.Component {
+  static propTypes = {
+    workshopId: PropTypes.string,
+    sessions: PropTypes.array
+  };
+
+  static contextTypes = {
+    router: PropTypes.object.isRequired
+  };
+
+  getSessionAttendanceLink(session) {
+    const url = this.getSessionAttendanceUrl(session);
+    return (
+      <a href={url} target="_blank">
+        {url}
+      </a>
+    );
+  }
+
+  getSessionAttendanceUrl(session) {
+    if (!session.code) {
+      console.warn(`No attendance code found for session ${session.id}`);
+      return null;
+    }
+
+    return `${window.location.protocol}${window.dashboard.CODE_ORG_URL}/pd/${
+      session.code
+    }`;
+  }
+
+  getAttendanceUrl(sessionId) {
+    return `/workshops/${this.props.workshopId}/attendance/${sessionId}`;
+  }
+
+  handleTakeAttendanceClick = event => {
+    event.preventDefault();
+    const sessionId = event.currentTarget.dataset.session_id;
+    this.context.router.push(this.getAttendanceUrl(sessionId));
+  };
+
+  render() {
+    const {sessions} = this.props;
+    return (
+      <WorkshopPanel header="Take Attendance:">
+        <div>
+          <p>
+            There is a unique attendance URL for each day of your workshop. On
+            each day of your workshop, your participants must visit that day's
+            attendance URL to receive professional development credit. The
+            attendance URL(s) will be shown below, 2 days in advance, for your
+            convenience.
+          </p>
+          <Row>
+            <Col md={2}>Date</Col>
+            <Col md={4}>Attendance URL</Col>
+            <Col md={4}>View Daily Roster</Col>
+          </Row>
+          {sessions.map(session => {
+            const date = moment.utc(session.start).format(DATE_FORMAT);
+            return (
+              <Row key={session.id} style={styles.attendanceRow}>
+                <Col md={2}>
+                  <div style={styles.attendanceRowText}>{date}</div>
+                </Col>
+                <Col md={4}>
+                  {session['show_link?'] && (
+                    <div style={styles.attendanceRowText}>
+                      {this.getSessionAttendanceLink(session)}
+                    </div>
+                  )}
+                </Col>
+                <Col md={4}>
+                  <Button
+                    className={
+                      session['show_link?'] && session.attendance_count === 0
+                        ? 'btn-orange'
+                        : null
+                    }
+                    data-session_id={session.id}
+                    href={this.context.router.createHref(
+                      this.getAttendanceUrl(session.id)
+                    )}
+                    onClick={this.handleTakeAttendanceClick}
+                  >
+                    Attendance for&nbsp;
+                    {date}
+                  </Button>
+                </Col>
+              </Row>
+            );
+          })}
+        </div>
+      </WorkshopPanel>
+    );
+  }
+}
