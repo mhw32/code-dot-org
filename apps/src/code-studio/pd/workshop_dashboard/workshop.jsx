@@ -324,10 +324,6 @@ export class Workshop extends React.Component {
   };
 
   renderEndWorkshopPanel() {
-    if (this.state.workshop.state !== 'In Progress') {
-      return null;
-    }
-
     const header = <div>End Workshop:</div>;
 
     const contents = (
@@ -548,7 +544,7 @@ export class Workshop extends React.Component {
         {workshopState !== 'Not Started' && (
           <AttendancePanel workshopId={workshopId} sessions={sessions} />
         )}
-        {this.renderEndWorkshopPanel()}
+        {workshopState === 'In Progress' && this.renderEndWorkshopPanel()}
         {this.renderEnrollmentsPanel()}
         {this.renderDetailsPanel()}
       </Grid>
