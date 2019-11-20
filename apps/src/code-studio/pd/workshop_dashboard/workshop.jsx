@@ -158,7 +158,7 @@ export class Workshop extends React.Component {
     const {params, permission, route} = this.props;
     const {workshopId} = params;
     const isWorkshopAdmin = permission.has(WorkshopAdmin);
-    const {workshop} = this.state;
+    const {workshop, enrollments, loadingEnrollments} = this.state;
     const {sessions, state: workshopState} = workshop;
 
     return (
@@ -188,16 +188,16 @@ export class Workshop extends React.Component {
         )}
         <EnrollmentsPanel
           workshopId={workshopId}
-          workshop={this.state.workshop}
-          enrollments={this.state.enrollments}
-          isLoadingEnrollments={this.state.loadingEnrollments}
+          workshop={workshop}
+          enrollments={enrollments}
+          isLoadingEnrollments={loadingEnrollments}
           isWorkshopAdmin={isWorkshopAdmin}
           loadEnrollments={this.loadEnrollments}
         />
         <DetailsPanel
           view={route.view}
           workshopId={workshopId}
-          workshop={this.state.workshop}
+          workshop={workshop}
           workshopState={workshopState}
           isWorkshopAdmin={isWorkshopAdmin}
           onWorkshopSaved={this.handleWorkshopSaved}
