@@ -263,22 +263,54 @@ export default class CustomMarshalingInterpreter extends Interpreter {
     return super.setProperty(...args);
   }
 
+  /**
+   * Execute one step of the interpreter.
+   * @return {boolean} True if a step was executed, false if no more instructions.
+   */
   step() {
-    const state = this.peekStackFrame();
-    // Program nodes always have end=0 for some reason (acorn related).
-    // The Interpreter.step method assumes that a falsey state.node.end value means
-    // the interpreter is inside polyfill code, because it strips all location information from ast nodes for polyfill code.
-    // This means the interpreter will sometimes step more often than necessary. This is a problem for us when breakpoints
-    // are turned on because the interpreter can step over nodes that we need to check before they get stepped, resulting
-    // in an infinite loop.
+    //
+    // The Interpreter.step method recurses to try to make the step() operation do more when
+    // calling polyfill code. This recursion can cause exceptions with the maximum call stack
+    // size is exceeded.
+    //
     // See this line in the interpreter code which introduced this behavior:
     //   https://github.com/NeilFraser/JS-Interpreter/commit/a4ded3ed1de7960cda9177d1bacb6a2526440d14#diff-966ad2ec9f775b3820dd37b4d36b650aR116
-    // TODO: push a fix upstream that checks state.node.end === undefined so the interpreter
-    // doesn't step unnecessarily for Program nodes.
-    if (state && state.node.type === 'Program') {
-      state.node.end = 1;
+    //
+    // TODO: push a fix upstream that executes the function body in a while loop instead of
+    // recursing by calling step() within step()
+    //
+    // We have cloned the functionality of Interpreter.step() here with the offending portion
+    // disabled through comments
+    //
+
+    var stack = this.stateStack;
+    var state = stack[stack.length - 1];
+    if (!state) {
+      return false;
     }
-    return super.step();
+    var node = state.node,
+      type = node['type'];
+    if (type === 'Program' && state.done) {
+      return false;
+    } else if (this.paused_) {
+      return true;
+    }
+    this.functionMap_[type]();
+
+    //
+    // DISABLED to avoid stack size exceptions (see above)
+    //
+
+    // if (!node['end']) {
+    //   // This is polyfill code.  Keep executing until we arrive at user code.
+    //   return this.step();
+    // }
+
+    //
+    // END: DISABLED
+    //
+
+    return true;
   }
 
   // The following overridden methods need to be patched in order to support custom marshaling.
