@@ -8491,15 +8491,6 @@ es-MX:
 
         -   Observa la instrucción `si` dentro del bucle dibujar que comprueba si se ha presionado la barra espaciadora. ( [Muéstrame dónde](#triggercallout=code_triggered1) )
         -   Usa el bloque `velocidadRotación` para que la rueda de colores comience a girar si el usuario presiona la barra espaciadora.
-      CSD U3 abstraction rotation control_2019: |-
-        # Controlar la velocidad
-
-        Usaste `velocidadRotación` fuera del bucle dibujar para que tu sprite gire cuando inicias tu programa. También puedes usar `velocidadRotación` **dentro** del bucle dibujar para cambiar la velocidad del sprite durante el juego. Por ejemplo, un sprite puede comenzar a girar cuando el usuario presiona la barra espaciadora, y seguirá girando hasta que se le indique que se detenga.
-
-        # Haz esto
-
-        -   Observa la instrucción `si` dentro del bucle dibujar que comprueba si se ha presionado la barra espaciadora. ( [Muéstrame dónde](#triggercallout=code_triggered1) )
-        -   Usa el bloque `velocidadRotación` para que la rueda de colores comience a girar si el usuario presiona la barra espaciadora.
       CSD U3 abstraction rotation_2018: |-
         # velocidadRotación
 
@@ -14906,6 +14897,38 @@ es-MX:
         \n\n-   **Cambia el texto del botón** para que diga \"Presióname\".\n\n-   **Define
         el color del botón** para que sea rojo.\n\n<img src=\"https://images.code.org/4cab6a5233cf07df0d8e312932762012-image-1444314797615.gif\"
         style=\"width: 500px; float: middle\">"
+      CSDU4 - Design Mode - 18: "# Capas y eliminación\n\n<img src=\"https://images.code.org/9e620f70869de438c4f0c66663686876-image-1444678130772.gif\"
+        style=\"width: 200px; float: right\">Los elementos de la interfaz de usuario
+        pueden superponerse entre sí, por lo que querrás la posibilidad de cambiar
+        el orden o la **profundidad** a la que se representa cada uno.\n\nSi **te
+        desplazas hacia la parte inferior de la pestaña Propiedades**, encontrarás
+        botones que te permiten **eliminar o cambiar fácilmente la profundidad** de
+        un elemento.\n\n-   **Elimina un Elemento** seleccionándolo (haciendo clic
+        en él) en la vista de diseño y luego haciendo clic en **Eliminar** en la pestaña
+        de propiedades.\n-   **Cambia la profundidad** de los elementos usando las
+        flechas dobles o simples.\n    -   Haz clic en la flecha doble para enviar
+        todo al frente o atrás.\n    -   Haz clic en la flecha única para subir o
+        bajar una capa.\n\n# Hacer esto:\n\nUsa las herramientas **eliminar** y **profundidad**
+        para **crear la imagen \"Después\"**\n\n<table>\n<tr>\n\t<th style=\"text-align:center\">Antes</th>\n
+        \   <th style=\"text-align:center\">Después</th>\n</tr>\n<tr>\n\t<td align=center><img
+        src=\"https://images.code.org/023f749ecb58c91869a4eacab6701203-image-1444685187662.png\"
+        style=\"width:200px ; border: solid 1px black\"></td>\n    <td style=\"text-align:center\"><img
+        src=\"https://images.code.org/e45fc7d451c071683fd3b59466b106b0-image-1444684677212.png\"
+        style=\"width:200px; border: solid 1px black\"></td>\n</tr>\n</table>"
+      CSDU4 - Design Mode - 21: |-
+        # Agregar imágenes
+
+        A veces, la funcionalidad que deseas representar en tu prototipo es demasiado complicada para lograrlo solo con los botones y campos predeterminados. Si deseas simular interfaces más avanzadas (como un mapa), la forma más fácil de hacerlo es con una imagen
+
+        # Hacer esto
+
+        -   Encuentra y descarga una imagen de un mapa que te gusta
+        -   Arrastra un elemento de imagen a tu aplicación \[] [0]
+        -   Elige tu imagen ![](<https://images.code.org/e5b9571ae54af60a3ae597b787e741ea-image-1444667688762.34.42 AM.png>)
+            -   **Las URL** se pueden agregar directamente al campo "imagen".
+            -   \*\*Sube imágenes \*\* haciendo clic en "Elegir".
+            -   **Nota:** Siempre puedes ver todos los archivos que has subido haciendo clic en el engranaje en la parte superior de la caja de herramientas. ![](<https://images.code.org/53b405b771bc11bf5d24c84c878c80dd-image-1444668067826.35.10 AM.png>)
+        -   ¡Asegúrate de darle a tu imagen una buena ID!
       CSDU4 - Design Mode - 4: |-
         # ID
 
@@ -14920,6 +14943,21 @@ es-MX:
         -   Cambia el ID de tu botón "presióname" a algo más útil (como `botónRojo`)
         -   Arrastra un segundo botón
         -   Haz que el segundo botón sea azul y asígnale el ID `botónAzul`
+      CSDU4 - Design Mode Icons: |-
+        <img src="https://images.code.org/2b405319f597910b1563ae607958171c-image-1475866226306.49.51.png" style="width: 200px; float:right">
+
+        # Iconos
+
+        Los íconos ayudan a los usuarios a encontrar la funcionalidad correcta y, al mismo tiempo, hacen que su aplicación se sienta más pulida.
+
+        # Hacer esto
+
+        Agrega algunos íconos a tu aplicación. Para cada ícono:
+
+        -   Arrastra un elemento de imagen
+        -   Junto al campo "Imagen", haz clic en "Elegir..."
+        -   Haz clic en la pestaña "Íconos" y selecciona uno
+        -   ¡Asegúrate de darle a tu imagen una buena ID! (¿Aún tenemos que decirlo?)
       CSDU4 Connecting Screens: |-
         # Navegar
 
@@ -16269,7 +16307,7 @@ es-MX:
 
         <img src="http://code.org/api/hour/begin_encryption.png">
       Dance_2019_01: |-
-        Arrastra el bloque [blockly block] [0] al espacio de trabajo y conéctalo dentro del bloque [blockly block] [1].
+        Arrastra el bloque <xml><block type="Dancelab_makeAnonymousDanceSprite" block-text="make a new dancer"><title name="COSTUME" config="&quot;CAT&quot;, &quot;PINEAPPLE&quot;">"CAT"</title><title name="LOCATION">{x: 200, y: 200}</title></block></xml> al espacio de trabajo y conéctalo dentro del bloque <xml><block type="Dancelab_whenSetup2" next_connection_disabled="true" block-text="setup"></block></xml>.
 
          Elige `gato` o`perezoso` para crear tu primer bailarín.
 
@@ -16279,10 +16317,46 @@ es-MX:
         ¡Usa el bloque <xml><block type="Dancelab_doMoveEachLR" block-text="do once"><title name="GROUP">"CAT"</title><title name="MOVE">MOVES.XClapSide</title><title name="DIR">-1</title></block></xml> para hacer que el gato aplauda!
 
         _¡Asegúrate de presionar la tecla "flecha arriba" o ![](<https://images.code.org/419e704e6841c0b696016bf5029b8cb9-image-1571864825506.06.45 PM.png>) después de hacer clic en el botón Ejecutar!_
+      Dance_2019_03: "¡Es momento para un baile! Programa a cada bailarín para que
+        se mueva cuando presiones diferentes teclas. ¡Elige tu movimiento favorito
+        para cada bailarín o configúralo en `(Aleatorio)` para algo totalmente impredecible!"
+      Dance_2019_04: |-
+        ¡Hagamos que los bailarines se muevan al ritmo de la música!
+
+        Conecta el bloque <xml><block type="Dancelab_atTimestamp"><title name="TIMESTAMP">4</title><title name="UNIT">"measures"</title></block></xml> a un bloque <xml><block type="Dancelab_changeMoveEachLR"><title name="GROUP">"SHARK"</title><title name="MOVE">MOVES.ThisOrThat</title><title name="DIR">-1</title></block></xml> de la caja de herramientas.
+
+        Su bailarín debería comenzar un nuevo movimiento después de la cuarta medida.
+
+        **Las medidas** se usan para contar el tiempo en la música. En este tutorial, una medida tiene cuatro tiempos de duración.
       Dance_2019_05: |-
         _¡Ya estamos entrando en ritmo!_
 
         Añade un bloque <xml><block type="Dancelab_atTimestamp"><title name="TIMESTAMP">6</title><title name="UNIT">"measures"</title></block></xml> a tu espacio de trabajo. Haz que el bailarín empiece a moverse después de 6 compases.
+      Dance_2019_06: |-
+        Usa este nuevo bloque para configurar un grupo de bailarines de respaldo más pequeños alrededor de un bailarín principal en el medio.
+
+         <xml><block type="Dancelab_makeNewDanceSpriteGroup">
+            <title name="N">???</title>
+            <title name="COSTUME" config="&quot;BEAR&quot;, &quot;CAT&quot;, &quot;FROG&quot;, &quot;PINEAPPLE&quot;, &quot;SHARK&quot;, &quot;UNICORN&quot;, &quot;SLOTH&quot;">???</title>
+            <title name="LAYOUT">"circle"</title>
+          </block></xml>
+
+        ¡Ahora puedes crear un grupo de bailarines de respaldo al mismo tiempo!
+      Dance_2019_07: |-
+        Cada bailarín tiene un conjunto de _propiedades_ que controlan su aspecto.
+
+        Usa <xml><block type="Dancelab_setPropEach" block-text="the set block"><title name="GROUP" config="sprites, &quot;BEAR&quot;, &quot;CAT&quot;, &quot;DUCK&quot;, &quot;FROG&quot;, &quot;PINEAPPLE&quot;, &quot;SHARK&quot;, &quot;UNICORN&quot;, &quot;SLOTH&quot;">???</title><title name="PROPERTY">"scale"</title><title name="VAL">???</title></block></xml> debajo de un bloque de evento verde para hacer que los bailarines aparezcan más cerca o más lejos después de que comience la música.
+      Dance_2019_08: Los bailarines tienen una propiedad de "tinte" que puede agregar
+        una capa de color. ¡Intenta cambiar el tinte de uno de tus bailarines (o de
+        un grupo completo)!
+      Dance_2019_09: |-
+        Este es un tipo especial de evento que se activa una y otra vez.
+
+        <xml><block type="Dancelab_everySeconds"><title name="N">2</title><title name="UNIT">"measures"</title></block></xml>
+
+        Los otros bloques nuevos en tu caja de herramientas te permiten cambiar aleatoriamente las propiedades de los bailarines con el tiempo.
+
+        _¡Sé creativo y diviértete!_
       Dance_2019_10: |-
         ¡Vamos baila! Crea tu propio baile para compartir con tus
         amigos.
@@ -16295,7 +16369,7 @@ es-MX:
       Dance_Party_02: |-
         ¡Hagamos bailar a este alce!
 
-        Arrastra el bloque \<<xml><block type="Dancelab_changeMoveLR"><title name="SPRITE">new\_dancer</title><title name="MOVE" config="MOVES.Dab, MOVES.Drop, MOVES.Floss">Floss</title><title name="DIR">-1</title></block></xml> al espacio de trabajo. Conéctalo debajo del bloque <xml><block type="Dancelab_atTimestamp"><title name="TIMESTAMP">4</title><title name="UNIT">"measures"</title></block></xml> Tu bailarín debería empezar a moverse después del cuarto compás.
+        Arrastra el bloque \<<xml><block type="Dancelab_changeMoveLR"><title name="SPRITE">new&#95;dancer</title><title name="MOVE" config="MOVES.Dab, MOVES.Drop, MOVES.Floss">Floss</title><title name="DIR">-1</title></block></xml> al espacio de trabajo. Conéctalo debajo del bloque <xml><block type="Dancelab_atTimestamp"><title name="TIMESTAMP">4</title><title name="UNIT">"measures"</title></block></xml> Tu bailarín debería empezar a moverse después del cuarto compás.
 
         Los **compases** se usan para contar el tiempo en la música. En este tutorial, un compás tiene cuatro tiempos.
       Dance_Party_03: |-
@@ -16355,6 +16429,17 @@ es-MX:
       Dance_Party_12: |-
         ¡Vamos baila! Crea tu propio baile para compartir con tus
         amigos.
+      Dance_Party_extras_alternate_2019: |-
+        # ¡Ida y vuelta!
+
+        A veces es posible que desees crear un patrón de movimientos de baile que elijas. Este nuevo bloque te permite hacer exactamente eso.
+
+        [blockly block][0]
+
+        Los movimientos que elijas arriba se repetirán en secuencia para siempre.
+
+        -   ¡Crea una rutina alterna para el bailarín principal al frente!
+        -   Usa diferentes números para cambiar la velocidad a la que se alternan los movimientos. ¡Prueba `1` o`0.5` para alternar más rápidamente!
       Dance_Party_extras_battle: |-
         # Equipos de baile
 
@@ -16381,6 +16466,15 @@ es-MX:
         -   Experimenta con otras duraciones de notas (como 0,5 para una semicorchea o 0,125 para una corchea).
         -   Añade algunos eventos `después del compás`
         -   Cambia "compases" por "segundos" y prueba sincronizar tus bailes de esa manera.
+      Dance_Party_extras_every_beat_2019: |-
+        # Negras
+
+        La mayoría de nuestros bailes utilizaron compases completos, pero cada compás está formado por 4 negras. Este baile usa [blockly block][0] para que el bailarín aplauda en cada negra, pero solamente luego de los primeros cuarto compases.
+
+        Intenta cambiar los números en los bloque para ver cómo cambia el baile.
+
+        -   Experimenta con otras duraciones de notas (como 0,5 para una blanca o 0,125 para una corchea).
+        -   Añade algunos otros eventos.
       Dance_Party_extras_layout: |-
         # ¡Vamos a organizarnos!
 
@@ -16389,6 +16483,13 @@ es-MX:
         -   Crea un segundo grupo de bailarines en una disposición diferente
         -   Cambia la disposición cuando se presiona una tecla
         -   Cambia una propiedad cuando los bailarines cambian la formación
+      Dance_Party_extras_mixed_2019: |-
+        # Más botones
+
+        Este baile te permite controlar las propiedades de los bailarines en tiempo real mientras bailan automáticamente. Intenta cambiar otras propiedades cuando presiones los botones. Por ejemplo:
+
+        -   Aleatoriza el matiz del bailarín cuando presiones "abajo".
+        -   Agrega un grupo de bailarines con un diseño aleatorio cuando presionas "espacio".
       Dance_Party_extras_on_beat: |-
         # Graves, medios y agudos
 
@@ -16401,6 +16502,10 @@ es-MX:
         # Más rápido, más lento
 
         El baile final utiliza el bloque `establecer velocidad` para controlar la rapidez de los movimientos de cada bailarín. Experimenta con diferentes velocidades en distintos puntos de la canción de este baile, todas las veces que quieras, o regresa a cualquiera de los bailes anteriores para mejorarlos.
+      Dance_Party_extras_speed_2019: |-
+        # Acelera, reduce la velocidad
+
+        El baile final utiliza el bloque [bloque blockly][0] para controlar que tan rápido se mueve cada bailarín. Experimenta con diferentes velocidades en diferentes puntos de la canción. No dudes en seguir experimentando con este baile o regresa a cualquiera de los bailes anteriores para mejorarlos.
       Dance_Party_extras_visible: |-
         # ¿Dónde habrán ido?
 
@@ -16605,9 +16710,12 @@ es-MX:
       MC_HOC_2017_04_Cole_2019: "¡El Agent puede cruzar el agua!  \\\r\n \\\r\nUsa
         un bucle \"Repetir\" para resolver este acertijo y ayuda a {currentPlayerName}
         a llegar a la **cubeta** [bucket_empty] detrás de la puerta."
-      MC_HOC_2017_05_Cole: "¡Oh, no, el puente se derrumbó! \\\r\n\\\r\nEscribe el
-        código para que el Agent reconstruya el puente usando el bloque \"colocar\"
-        para que {currentPlayerName} pueda llegar hasta la **pala** [diamond_shovel]."
+      MC_HOC_2017_05_Cole: |-
+        ¡Oh, no, el puente se derrumbó!
+
+        Escribe el código para que el Agent reconstruya el puente usando el bloque <xml>  <block type="craft_placeBlock">
+            <title name="TYPE">       </title>
+          </block></xml> para que {currentPlayerName} pueda llegar hasta la **pala** [diamond_shovel].
       MC_HOC_2017_05_Cole_2019: "¡Oh, no, el puente se derrumbó! \\\r\n\\\r\nEscribe
         el código para que el Agent reconstruya el puente usando el bloque \"colocar\"
         para que {currentPlayerName} pueda llegar hasta la **pala** [diamond_shovel]."
@@ -21290,10 +21398,18 @@ es-MX:
         después 'resuelve el desafío!
       courseE_farmer_functions11_predict_2019: Descifra qué función usar y cuál eliminar,
         después 'resuelve el desafío!
-      courseE_farmer_functions13_2018: "Resuelve este desafío en 23 bloques o menos.\\\r\n\\_\\_\\_
-        \ \\\r\n\\\r\n\n##### Cada brote crecerá como _un_ maíz o como nada."
-      courseE_farmer_functions13_2019: "Resuelve este desafío en 23 bloques o menos.\\\r\n\\_\\_\\_
-        \ \\\r\n\\\r\n\n##### Cada brote crecerá como _un_ maíz o como nada."
+      courseE_farmer_functions13_2018: |-
+        Resuelve este desafío en 23 bloques o menos.
+
+        * * *
+
+        ##### Cada brote crecerá como _un_ maíz o como nada. Para encontrar la mejor solución, necesitaras editar las funciones directamente.
+      courseE_farmer_functions13_2019: |-
+        Resuelve este desafío en 23 bloques o menos.
+
+        * * *
+
+        ##### Cada brote crecerá como _un_ maíz o como nada. Para encontrar la mejor solución, necesitaras editar las funciones directamente.
       courseE_farmer_functions1_2018: |-
         _"¿Nos hemos conocido antes? ¡Soy la cosechadora!"_
 
@@ -21328,12 +21444,18 @@ es-MX:
         * * *
 
         ##### Cada brote hará crecer _un_ maíz o nada.
-      courseE_farmer_functions2b_2018: "Usa la función para ayudar a la cosechadora
-        a recoger el maíz y las calabazas.\\\r\n\\_\\_\\_\\\r\n\n##### Cada brote
-        crecerá como _un_ maíz o como nada."
-      courseE_farmer_functions2b_2019: "Usa la función para ayudar a la cosechadora
-        a recoger el maíz y las calabazas.\\\r\n\\_\\_\\_\\\r\n\n##### Cada brote
-        crecerá como _un_ maíz o como nada."
+      courseE_farmer_functions2b_2018: |-
+        Usa la función para ayudar a la cosechadora a recoger el maíz y las calabazas.
+
+        * * *
+
+        ##### Cada brote crecerá como _un_ maíz o como nada.
+      courseE_farmer_functions2b_2019: |-
+        Usa la función para ayudar a la cosechadora a recoger el maíz y las calabazas.
+
+        * * *
+
+        ##### Cada brote crecerá como _un_ maíz o como nada.
       courseE_farmer_functions2ba: "_\"¡Me siento tan funcional!\"_\n\n¿Notaste que
         había un código repetido en el último desafío? Poner todo dentro de un bucle
         no sirve, pero **podemos** usar funciones. \n\nPara este desafío, debemos
@@ -21341,14 +21463,22 @@ es-MX:
         Ahora, todo lo que necesitas hacer es poner el **bloque que llama a la función**
         `maíz y calabaza` dentro del código donde lo necesitas.\n\n* * *\n\n#####
         Cada brote hará crecer _un_ maíz o nada."
-      courseE_farmer_functions2ba_2018: "_\"¡Me siento tan funcional!\"_\\\r\n\\\r\n¡Ahora
-        hay calabazas múltiples en cada parche!  Mira cuidadosamente las definiciones
-        de la función debajo para descifrar cómo usar cada una.\\\r\n\\_\\_\\_\\\r\n\n#####
-        Cada brote crecerá como _un_ maíz o como nada."
-      courseE_farmer_functions2ba_2019: "_\"¡Me siento tan funcional!\"_\\\r\n\\\r\n¡Ahora
-        hay calabazas múltiples en cada parche!  Mira cuidadosamente las definiciones
-        de la función debajo para descifrar cómo usar cada una.\\\r\n\\_\\_\\_\\\r\n\n#####
-        Cada brote crecerá como _un_ maíz o como nada."
+      courseE_farmer_functions2ba_2018: |-
+        _"¡Me siento tan funcional!"_
+
+        ¡Ahora hay múltiples calabazas en cada parche!  Mira cuidadosamente las definiciones de las funciones debajo para descifrar cómo usar cada una.
+
+        * * *
+
+        ##### Cada brote crecerá como _un_ maíz o como nada.
+      courseE_farmer_functions2ba_2019: |-
+        _"¡Me siento tan funcional!"_
+
+        ¡Ahora hay múltiples calabazas en cada parche!  Mira cuidadosamente las definiciones de las funciones debajo para descifrar cómo usar cada una.
+
+        * * *
+
+        ##### Cada brote crecerá como _un_ maíz o como nada.
       courseE_farmer_functions3c: "Ahora, completa la función tu mismo sacando los
         bloques desde el código y dejándolos en la \n **definición de función**.  \\\r\n\\\r\nNo
         te olvides de agregar los bloques pequeños **función llamar** para usar la
