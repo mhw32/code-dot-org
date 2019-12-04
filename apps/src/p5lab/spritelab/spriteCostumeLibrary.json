@@ -50,7 +50,7 @@
       },
       "looping": true,
       "frameDelay": 2,
-      "jsonLastModified": "2019-12-04 00:51:04 UTC",
+      "jsonLastModified": "2019-12-04 04:17:39 UTC",
       "pngLastModified": "2019-12-04 00:51:05 UTC",
       "version": "x7dCT9yMelHImdhibtY5fzCCfAfO0qiV",
       "sourceUrl": "/api/v1/spritelab-animation-library/x7dCT9yMelHImdhibtY5fzCCfAfO0qiV/category_animals/bee.png",
@@ -6132,6 +6132,7 @@
       "category_characters/kid_42_side"
     ],
     "animals": [
+      "category_animals/bee",
       "category_animals/bunny1_hurt",
       "category_animals/bunny1_jump",
       "category_animals/bunny1_ready",
@@ -6490,6 +6491,7 @@
     "category_animals": [
       "category_animals/bear",
       "category_animals/bear_with_fish",
+      "category_animals/bee",
       "category_animals/brown_cat",
       "category_animals/brown_dog",
       "category_animals/bunny1_hurt",
