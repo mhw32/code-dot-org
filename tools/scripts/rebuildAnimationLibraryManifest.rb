@@ -25,9 +25,10 @@ require_relative '../../lib/cdo/png_utils'
 require_relative './constants'
 include CdoCli
 
-DEFAULT_S3_BUCKET = 'cdo-animation-library'.freeze
-DEFAULT_OUTPUT_FILE = "#{`git rev-parse --show-toplevel`.strip}/apps/src/gamelab/animationLibrary.json".freeze
-SPRITELAB_OUTPUT_FILE = "#{`git rev-parse --show-toplevel`.strip}/apps/src/gamelab/spriteCostumeLibrary.json".freeze
+GAMELAB_S3_BUCKET = 'cdo-animation-library'.freeze
+SPRITELAB_S3_BUCKET = 'cdo-spritelab-animation-library'.freeze
+GAMELAB_OUTPUT_FILE = "#{`git rev-parse --show-toplevel`.strip}/apps/src/p5lab/gamelab/animationLibrary.json".freeze
+SPRITELAB_OUTPUT_FILE = "#{`git rev-parse --show-toplevel`.strip}/apps/src/p5lab/spritelab/spriteCostumeLibrary.json".freeze
 DOWNLOAD_DESTINATION = '~/cdo-animation-library'.freeze
 SPRITE_COSTUME_LIST = SPRITE_LAB_ANIMATION_LIST
 
@@ -55,7 +56,7 @@ class ManifestBuilder
   #
   def rebuild_animation_library_manifest
     # Connect to S3 and get a listing of all objects in the animation library bucket
-    bucket = Aws::S3::Bucket.new(DEFAULT_S3_BUCKET)
+    bucket = Aws::S3::Bucket.new(@options[:spritelab] ? SPRITELAB_S3_BUCKET : GAMELAB_S3_BUCKET)
     animation_objects = get_animation_objects(bucket)
     info "Found #{animation_objects.size} animations."
 
@@ -67,7 +68,7 @@ class ManifestBuilder
     alias_map = build_alias_map(animation_metadata)
     info "Mapped #{alias_map.size} aliases."
 
-    output_file = @options[:spritelab] ? SPRITELAB_OUTPUT_FILE : DEFAULT_OUTPUT_FILE
+    output_file = @options[:spritelab] ? SPRITELAB_OUTPUT_FILE : GAMELAB_OUTPUT_FILE
 
     # Write result to file
     File.open(output_file, 'w') do |file|
@@ -142,6 +143,11 @@ class ManifestBuilder
       # This is the parallel block.  This block should return a string to
       # generate a warning and skip the animation, and a metadata Hash in
       # the success case.
+
+      if @options[:spritelab] && !(SPRITE_COSTUME_LIST.include? name)
+        next "Did not include #{name}"
+      end
+
       objects = animation_objects[name]
 
       json_destination = File.expand_path("#{DOWNLOAD_DESTINATION}/#{objects['json'].key}")
@@ -218,7 +224,7 @@ The animation has been skipped.
   # Load metadata from previously-generated file, which we'll use later to
   # skip update work if it's unchanged.
   def read_old_metadata
-    output_file = @options[:spritelab] ? SPRITELAB_OUTPUT_FILE : DEFAULT_OUTPUT_FILE
+    output_file = @options[:spritelab] ? SPRITELAB_OUTPUT_FILE : GAMELAB_OUTPUT_FILE
     File.open(output_file, 'r') do |file|
       old_manifest = JSON.parse(file.read)
 
