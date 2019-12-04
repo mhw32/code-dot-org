@@ -327,7 +327,8 @@ The animation has been skipped.
       metadata['version'] = objects['png'].object.version_id
 
       # Generate appropriate sourceUrl pointing to the animation library API
-      metadata['sourceUrl'] = "/api/v1/animation-library/#{metadata['version']}/#{name}.png"
+      api_endpoint = @options[:spritelab] ? 'spritelab-animation-library' : 'animation-library'
+      metadata['sourceUrl'] = "/api/v1/#{api_endpoint}/#{metadata['version']}/#{name}.png"
 
       # Populate sourceSize if not already present
       unless metadata.key?('sourceSize')
